@@ -22,14 +22,17 @@ Hint: you may find it helpful to read up on and use the following jQuery methods
 */
 
 $(function(){
-
+//locating the entire form and attaching a submit event. (You call/invoke functions, programs and methods.)
   $('#js-shopping-list-form').submit(event => {
     // this stops the default form submission behavior
     event.preventDefault();
+    //we store the value of what is typed into the form text box and assign it to the const shoppingText.
     const shoppingText = $('.js-shopping-list-entry').val();
 
+//this clear out the entry form.
     $('.js-shopping-list-entry').val('');
 
+//We are locating an object (shopping-list ul) based on its class and then appending(adding another child to the current collection of children, which might be none. It's adding another child to the list. In this case we're adding a <li></li> to that collection of <li>'s , which is denoted by the shopping-list ul) onto that object.
     $('.shopping-list').append(
       `<li>
       <span class="shopping-item">${shoppingText}</span>
@@ -44,19 +47,16 @@ $(function(){
     </li>`);
   });
 
-
+//locate the .shopping list ul and listen for a click event on anything that's a child of it that matches .shopping-item-toggle (the second selector) and execute the function below.
   $('.shopping-list').on('click', '.shopping-item-toggle', function(event) {
 
-    $(this).closest('li').find('.shopping-item').toggleClass('.shopping-item shopping-item__checked');
+//this is the function that's executed. $this is referring to .shopping-item-toggle. find the closest (parent-going up the tree until you find a li) to that class. once you found a li, you go down the tree until you find a shopping-item because .find() looks for a child that matches that. toggleClass toggle each of the classes separated by spaces. It's toggling the class shopping-item__checked. we do not use the "." in this case because of toggleClass.
+    $(this).closest('li').find('.shopping-item').toggleClass('shopping-item__checked');
   });
 
-
+//locate the .shopping list ul and listen for a click event on anything that's a child of it that matches .shopping-item-delete (the second selector) and execute the function below.
   $('.shopping-list').on('click', '.shopping-item-delete', function(event) {
-    $(this).closest('li').remove();
-
+    //here $this refers to .shopping-item-delete, which is the button to delete it. The parent goes the tree until it finds the li and removes the entire li.
+    $(this).closest('li').remove()
   });
-
-
-
-
 });
