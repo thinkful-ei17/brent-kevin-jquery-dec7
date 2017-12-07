@@ -26,8 +26,8 @@ $(function(){
   $('#js-shopping-list-form').submit(event => {
     // this stops the default form submission behavior
     event.preventDefault();
-    const shoppingText = $(event.currentTarget).find('.js-shopping-list-entry');
-    
+    const shoppingText = $('.js-shopping-list-entry').val();
+
     $('.js-shopping-list-entry').val('');
 
     $('.shopping-list').append(
@@ -43,4 +43,20 @@ $(function(){
       </div>
     </li>`);
   });
+
+
+  $('.shopping-list').on('click', '.shopping-item-toggle', function(event) {
+
+    $(this).closest('li').find('.shopping-item').toggleClass('.shopping-item shopping-item__checked');
+  });
+
+
+  $('.shopping-list').on('click', '.shopping-item-delete', function(event) {
+    $(this).closest('li').remove('.shopping-item');
+
+  })
+
+
+
+
 });
