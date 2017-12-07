@@ -39,24 +39,31 @@ function startFizzbuzzer(num) {
 $(function() {
 
 
-
+/*
 for completionist sake, here's the function where you only append ONCE to the DOM.  the performance increase is actually quite big:
+*/
+
+//this is the more efficient version:
 
   $('#number-chooser').on('submit', function(event) {
     event.preventDefault();
+    
     //including the 10 forces it to use decimal.
     const input = parseInt($('#number-choice').val(), 10);
     const results = startFizzbuzzer(input);
 
     results.forEach(result => {
       const div = generateItem(result);
+
       //this is called once for each result.
       $('.js-results').append(div);
     });
   });
 
 
-This is the less efficient version:
+
+//This is the less efficient version:
+
 
   $('#number-chooser').on('submit', function(event) {
   event.preventDefault();
