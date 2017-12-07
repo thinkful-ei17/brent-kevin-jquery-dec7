@@ -1,3 +1,4 @@
+'use strict';
 /*
 To complete this challenge requires:
 
@@ -26,14 +27,20 @@ $(function(){
     // this stops the default form submission behavior
     event.preventDefault();
     const shoppingText = $(event.currentTarget).find('.js-shopping-list-entry');
-    $('button type=["submit"]').click(function(event){
+    
+    $('.js-shopping-list-entry').val('');
 
-      $(ul).append('<li>' +
-      `${shoppingText.val()}`
-      shoppingText.val("");
-    );
-    })
+    $('.shopping-list').append(
+      `<li>
+      <span class="shopping-item">${shoppingText}</span>
+      <div class="shopping-item-controls">
+        <button class="shopping-item-toggle">
+          <span class="button-label">check</span>
+        </button>
+        <button class="shopping-item-delete">
+          <span class="button-label">delete</span>
+        </button>
+      </div>
+    </li>`);
   });
-
-
 });
